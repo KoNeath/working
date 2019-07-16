@@ -307,5 +307,6 @@ function Game2048(){
     this.addEvent();
     this.touchEvent();
 }
+
 var g= new Game2048;
 g.init();

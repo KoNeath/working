@@ -9,6 +9,7 @@ body{
 	overflow:hidden;
 	margin-top: 30px;
 }
+
 .cell_wrap{
 	background-color: rgba(0,0,0,0.2);
 	width: 35%;
