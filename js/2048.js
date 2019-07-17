@@ -65,46 +65,7 @@ Game2048.prototype={
             }
         }
     },
-    touchEvent:function(){
-		var that = this;
-        //滑动处理  
-        var startX, startY;  
-        document.addEventListener('touchstart',function (ev) {  
-            startX = ev.touches[0].pageX;  
-            startY = ev.touches[0].pageY;    
-        }, false);  
-        document.addEventListener('touchend',function (ev) {  
-            var endX, endY;  
-            endX = ev.changedTouches[0].pageX;  
-            endY = ev.changedTouches[0].pageY;  
-            var direction = GetSlideDirection(startX, startY, endX, endY);  
-            switch(direction) {  
-                case 0:    
-                    break;  
-                case 1:  
-                    that.moveAble = false;
-					that.moveUp();
-					that.checkLose(); 
-                    break;  
-                case 2:  
-                    that.moveAble = false;
-					that.moveDown();
-					that.checkLose();  
-                    break;  
-                case 3:  
-                    that.moveAble = false;
-					that.moveLeft();
-					that.checkLose();    
-                    break;  
-                case 4:  
-                    that.moveAble = false;
-					that.moveRight();
-					that.checkLose(); 
-                    break;  
-                default:             
-            }  
-        }, false);  
-	},
+    //控制
     //左
     moveLeft:function(){
         var i,j,k,n;
@@ -271,7 +232,7 @@ Game2048.prototype={
 		},200);
 		this.score += temp1;
 		$("#score").html(this.score);	
-		if(temp1 == 4096){
+		if(temp1 == 2048){
 			alert('嚯，嫩牛逼呢！');
 			this.init();
 		}	
@@ -300,12 +261,12 @@ Game2048.prototype={
 
 }
 
+
 function getRandom(n){
     return Math.floor(Math.random()*n)
 }
 function Game2048(){
     this.addEvent();
-    this.touchEvent();
 }
 
 var g= new Game2048;
