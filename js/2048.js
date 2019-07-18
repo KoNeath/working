@@ -66,8 +66,8 @@ Game2048.prototype={
         }
     },
     //控制
-    //左
-    moveLeft:function(){
+    //上
+    moveUP:function(){
         var i,j,k,n;
         for(i=0;i<4;i++){
             n=0;
@@ -95,27 +95,27 @@ Game2048.prototype={
         }
         this.newCell();
     },
-    //右
-    moveRight:function(){
+    //下
+    moveDown:function(){
         var i,j,k,n;
-        for(i=0;i<4;i++){//从右至左遍历
+        for(i=0;i<4;i++){//从下至上遍历
             n=3;
             for(j=3;j>=0;j--){
                 if(this.arr[i][j].value==0){
                     continue;
                 }
-                k=j+1;//不为0的格子向右移动一位
+                k=j+1;//不为0的格子向下移动一位
                 a:
                 while(k<=n){//判断是否符合移动条件
-                    if(this.arr[i][j].value==0){
+                    if(this.arr[i][k].value==0){
                         if(k==n||(this.arr[i][k+1].value!=0&&this.arr[i][k+1].value!=this.arr[i][j].value)){
                             this.moveCell(i,j,i,k);
                         }
-                        k++;//为空则k指针继续右移
+                        k++;//为空则k指针继续上移
                     }else{
                         if(this.arr[i][k].value==this.arr[i][j].value){
                             this.mergeCell(i,j,i,k);
-                            n--;    //向左缩小范围
+                            n--;    //向上缩小范围
                         }
                         break a;
                     }
@@ -125,9 +125,10 @@ Game2048.prototype={
         }
         this.newCell();
     },
-    //上
-    moveUP:function(){
+    //左
+    moveLeft:function(){
         var i,j,k,n;
+        
         for(j=0;j<4;j++){
             n=0;
             for(i=0;i<4;i++){
@@ -154,8 +155,8 @@ Game2048.prototype={
         }
         this.newCell();
     },
-    //下
-    moveDown:function(){//从下到上遍历
+    //右
+    moveRight:function(){//从右到左遍历
         var i,j,k,n;
         for(j=0;j<4;j++){
             n=3;
@@ -163,18 +164,18 @@ Game2048.prototype={
                 if(this.arr[i][j].value==0){
                     continue;
                 }
-                k=i+1;//不为0的格子向下移动一位
+                k=i+1;//不为0的格子向右移动一位
                 a:
                 while(k<=n){//判断是否符合移动条件
-                    if(this.arr[i][j].value==0){
+                    if(this.arr[k][j].value==0){
                         if(k==n||(this.arr[k+1][j].value!=0&&this.arr[k+1][j].value!=this.arr[i][j].value)){
                             this.moveCell(i,j,k,j);
                         }
-                        k++;//为空则k指针继续下移
+                        k++;//为空则k指针继续左移
                     }else{
                         if(this.arr[k][j].value==this.arr[i][j].value){
                             this.mergeCell(i,j,k,j);
-                            n--;    //向上缩小范围
+                            n--;    //向左收缩范围
                         }
                         break a;
                     }
